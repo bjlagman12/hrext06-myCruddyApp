@@ -1,11 +1,15 @@
 $(document).ready(function(){
   console.log('jQuery loaded');
 
+
+   var myItemInStorage = localStorage.getItem('inputFieldValue');
+    console.log('myItemInStorage', myItemInStorage);
+
   // write to local storage from input when button save clicked
   $('.btn-submit').on('click', function(){
     localStorage.setItem('inputFieldValue', $('.text-entry').val());
-    var myItemInStorage = localStorage.getItem('inputFieldValue');
-    console.log('myItemInStorage', myItemInStorage);
+
+   
 
     // display the value here
     $('.list-display-field').text(myItemInStorage); // ??
