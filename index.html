@@ -10,30 +10,26 @@
     <script src="app.js"></script>
   </head>
   <body>
-  <div>
-    <input class="text-entry" type="text" placeholder="Name">
-    <button class="btn-submit" type="button">save name</button>
-    <button class="btn-delete" type="button">delete name</button>
+  <div class="all_text_entry">
+    <input class="entry-name" type="text" placeholder="Name"><br>
+    <input class="entry-age" type="text" placeholder="Age"><br>
+    <input class="entry-paycheck" type="text" placeholder="Paycheck for the week"><br>
   </div>
-  <div>
-    <input class="text-entry" type="text" placeholder="Age">
-    <button class="btn-submit" type="button">save age</button>
-    <button class="btn-delete" type="button">delete age</button>
-  </div>
-   <div>
-    <input class="text-entry" type="text" placeholder="Paycheck for the week">
-    <button class="btn-submit" type="button">save paycheck</button>
-    <button class="btn-delete" type="button">delete paycheck</button>
-  </div>
-  <div>
-    <input class="text-entry" type="text" placeholder="enter your information">
-    <button class="btn-submit" type="button">save value</button>
-    <button class="btn-delete" type="button">delete value</button>
+
+  <div class='all_button'>
+    <button class="btn-add" type="button">add expense</button><br>
+    <button class="btn-delete" type="button">delete</button><br>
+    <button class="btn-submit" type="button">submit</button><br>
+    <button class="btn-clear" type="button">clear</button> 
   </div>
 
 
   <div class="list-display-field">
-    nothing to display yet
+    Information
+  </div>
+
+  <div>
+    <ul class="expense_list"></ul>
   </div>
   </body>
 </html>
