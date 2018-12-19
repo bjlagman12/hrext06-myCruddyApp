@@ -2,9 +2,6 @@ $(document).ready(function(){
   console.log('jQuery loaded');
   var counter = 0
 
-  // need to access additional expenses
- 
-
   // set name
   var myNameInStorage = localStorage.getItem('name');
   // set age
@@ -13,7 +10,7 @@ $(document).ready(function(){
   var myPayCheckInStorage = localStorage.getItem('payCheck');
 
   // write to local storage from input when button save clicked
-  $('.btn-submit').on('click', function(){
+  $('.btn-submit').one('click', function(e){
 
     localStorage.setItem('name', $('.entry-name').val());
     localStorage.setItem('age', $('.entry-age').val());
@@ -24,11 +21,19 @@ $(document).ready(function(){
     localStorage.setItem('bills',$('.entry-bills').val());
     localStorage.setItem('food',$('.entry-food').val());
 
+    $('.basic_info').append('<div>' + e.view.localStorage.name + '</div>')
+    $('.basic_info').append('<div>' + e.view.localStorage.age + '</div>')
+
+    $('.expense_list').append('<li>' + e.view.localStorage.paycheck + '</li>')
+    $('.expense_list').append('<li>' + e.view.localStorage.saving + '</li>')
+    $('.expense_list').append('<li>' + e.view.localStorage.investing + '</li>')
+    $('.expense_list').append('<li>' + e.view.localStorage.rent + '</li>')
+    $('.expense_list').append('<li>' + e.view.localStorage.bills + '</li>')  
+    $('.expense_list').append('<li>' + e.view.localStorage.food + '</li>')
   
   });
 
   // add more inputs when button is pressed
-  
   $('.btn-add').on('click',function(){
 
     var entryAddOns = 'entry-add-expenses' + counter
@@ -38,35 +43,26 @@ $(document).ready(function(){
 
     counter++;
     
-    // console.log(entryAddOns)
     $('.all_text_entry').append('<input class="'+ newExpenses +'" type="text" placeholder="Additional Expenses"><input class="' + entryAddOns + '" type="text" placeholder="Cost"><button class="' + btnSubmit + '" type="button">submit</button><button class="' + btnDelete +'" type="button">delete</button>')
 
       $('.' + btnSubmit).on('click',function(){
         localStorage.setItem($('.'+ newExpenses).val(),$('.'+ entryAddOns).val())
-        // console.log()
-        // console.log(entryAddOns)
       })
 
       $('.'+ btnDelete).on('click',function(){
-
         localStorage.removeItem(newExpenses)
         $('.'+ newExpenses).remove()
         $('.'+ entryAddOns).remove()
         $('.'+ btnSubmit).remove()
         $('.'+ btnDelete).remove()
-      
       })
-
-    
   });
 
-  // delete from local storage when delete button clicked
-  $('.btn-delete').on('click', function(){
-
-    counter--
-    console.log(counter)
-    // localStorage.removeItem('');
-  });
+  // // delete from local storage when delete button clicked
+  // $('.btn-delete').on('click', function(){
+  //   counter--
+  //   console.log(counter)
+  // });
 
   // clear everything
   $('.btn-clear').on('click', function(){
