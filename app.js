@@ -24,33 +24,33 @@ $(document).ready(function(){
     localStorage.setItem('bills',$('.entry-bills').val());
     localStorage.setItem('food',$('.entry-food').val());
 
-    // console.log($('.entry-name').val())
-    // $('.list-display-field').append('<div>' + myNameInStorage+ '</div>');
   
   });
 
   // add more inputs when button is pressed
   
   $('.btn-add').on('click',function(){
-    // var counter = $('.')
+
     var entryAddOns = 'entry-add-expenses' + counter
-    var newExpenses = 'addexpenses' + counter;
+    var newExpenses = 'new-entry-expense' + counter;
     var btnSubmit = 'btn-submit' + counter;
     var btnDelete = 'btn-delete' + counter;
 
     counter++;
     
     // console.log(entryAddOns)
-    $('.all_text_entry').append('<input class="' + entryAddOns + '" type="text" placeholder="Additional Expenses"><button class="' + btnSubmit + '" type="button">submit</button><button class="' + btnDelete +'" type="button">delete</button>')
+    $('.all_text_entry').append('<input class="'+ newExpenses +'" type="text" placeholder="Additional Expenses"><input class="' + entryAddOns + '" type="text" placeholder="Cost"><button class="' + btnSubmit + '" type="button">submit</button><button class="' + btnDelete +'" type="button">delete</button>')
 
       $('.' + btnSubmit).on('click',function(){
-        localStorage.setItem(newExpenses,$('.'+ entryAddOns).val())
+        localStorage.setItem($('.'+ newExpenses).val(),$('.'+ entryAddOns).val())
+        // console.log()
         // console.log(entryAddOns)
       })
 
       $('.'+ btnDelete).on('click',function(){
 
         localStorage.removeItem(newExpenses)
+        $('.'+ newExpenses).remove()
         $('.'+ entryAddOns).remove()
         $('.'+ btnSubmit).remove()
         $('.'+ btnDelete).remove()
