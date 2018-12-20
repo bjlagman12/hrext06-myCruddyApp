@@ -1,135 +1,125 @@
 $(document).ready(function(){
   console.log('jQuery loaded');
+  // the counter is for special classes for each input
   var counter = 0
   
-  var liMaker = function(name,gift){
-    $('.list').append('<li class="'+name+'">'+name +'</li><div class="'+gift+'">' + gift + '</div>')
-  }
-
-
-
+  // this is use to disable the submit button until something is typed in the input field
+  $('.btn-submit').attr('disabled',true);
+   $(this).keyup(function(){
+      if($('.entry-name').val().length > 0 && $('.entry-gift').val().length > 0 )
+        $('.btn-submit').attr('disabled', false);            
+      else
+        $('.btn-submit').attr('disabled',true);
+    })
+  
   // add key and value into the local storage
   $('.btn-submit').on('click',function(){
-    localStorage.setItem($('.entry-name').val(),$('.entry-gift').val() )
+     $('.btn-submit').attr('disabled',true);
 
-    liMaker($('.entry-name').val(),$('.entry-gift').val())
-   
-  });
-
-   $('.btn-delete').on('click',function(){
-    localStorage.removeItem($('.entry-name').val())
-
-    var firstName = $('.entry-name').val();
-    var firstGift = $('.entry-gift').val();
-
-    $('.'+firstName).remove();
-    $('.'+firstGift).remove();
-
-
-   
-  });
-  // add more inputs when button is pressed
-  $('.btn-add').on('click',function(){
-
-    var newGift = 'new-gift' + counter
+    var liMaker = function(name,gift){
+      counter++
+      
     var newPerson = 'new-person' + counter;
-    var btnSubmit = 'btn-submit' + counter;
+    var newGift = 'new-gift' + counter
     var btnDelete = 'btn-delete' + counter;
-
-    counter++;
     
-    $('.new_xmas_entry_list').append('<input class="'+ newPerson +'" type="text" placeholder="Name"><input class="' + newGift + '" type="text" placeholder="Gift"><button class="' + btnSubmit + '" type="button">submit</button><button class="' + btnDelete +'" type="button">delete</button>')
+     // this is list maker for later usage;
+      $('.list').append('<li class="'+newPerson+'">'+name +'</li><div class="'+newGift+'">' + gift + '</div><button class="'+btnDelete+'" type="button">delete</button>')
 
-      $('.' + btnSubmit).on('click',function(){
-        localStorage.setItem($('.'+ newPerson).val(),$('.'+ newGift).val())
+      // When you press delete it removes from the list and the local storage
+      $('.'+btnDelete).on('click',function(){
+        var key = $('.'+ newPerson).text()
+        localStorage.removeItem(key)
 
-        liMaker($('.'+ newPerson).val(),$('.'+ newGift).val())
+        var elementNum = $(this).attr("class").slice(-1)
+
+        $('.new-person'+ elementNum).remove()
+        $('.new-gift'+ elementNum).remove()
+        $('.btn-delete'+ elementNum).remove()
 
       })
+    }
 
-      $('.'+ btnDelete).on('click',function(){
-        localStorage.removeItem($('.'+ newPerson).val())
+    var key = $('.entry-name').val().toLowerCase() 
+    // add to the local storage
+    localStorage.setItem(key,$('.entry-gift').val() )
 
-        var name = $('.'+ newPerson).val()
-        var gift = $('.'+ newGift).val()
+    // makes a list the the input entries
+    // console.log(key)
+    // if(localStorage.hasOwnProperty(key)){
+    // }
+    liMaker($('.entry-name').val(),$('.entry-gift').val())
+    // e.target.innerHTML
+    
 
-        $('.'+name).remove()
-        $('.'+gift).remove()  
-
-        $('.'+ newPerson).remove()
-        $('.'+ newGift).remove()
-        $('.'+ btnSubmit).remove()
-        $('.'+ btnDelete).remove()
-      })
+    // clears the input form
+    $('div').children('input').val('')
+   
   });
 
   // clear everything
   $('.btn-clear').on('click', function(){
     localStorage.clear()
     location.reload()
-    
-
+   
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-  // // set name
-  // var myNameInStorage = localStorage.getItem('name');
-  // // set age
-  // var myAgeInStorage = localStorage.getItem('age');
-  // // set paycheck
-  // var myPayCheckInStorage = localStorage.getItem('payCheck');
-
-  // // write to local storage from input when button save clicked
-  // $('.btn-submit').one('click', function(e){
-
-  //   localStorage.setItem('name', $('.entry-name').val());
-  //   localStorage.setItem('age', $('.entry-age').val());
-  //   localStorage.setItem('paycheck',$('.entry-paycheck').val());
-  //   localStorage.setItem('saving',$('.entry-saving').val());
-  //   localStorage.setItem('investing',$('.entry-invest').val());
-  //   localStorage.setItem('rent',$('.entry-rent').val());
-  //   localStorage.setItem('bills',$('.entry-bills').val());
-  //   localStorage.setItem('food',$('.entry-food').val());
-
-  //   $('.basic_info').append('<div>' + e.view.localStorage.name + '</div>')
-  //   $('.basic_info').append('<div>' + e.view.localStorage.age + '</div>')
-
-  //   $('.expense_list').append('<li>' + e.view.localStorage.paycheck + '</li>')
-  //   $('.expense_list').append('<li>' + e.view.localStorage.saving + '</li>')
-  //   $('.expense_list').append('<li>' + e.view.localStorage.investing + '</li>')
-  //   $('.expense_list').append('<li>' + e.view.localStorage.rent + '</li>')
-  //   $('.expense_list').append('<li>' + e.view.localStorage.bills + '</li>')  
-  //   $('.expense_list').append('<li>' + e.view.localStorage.food + '</li>')
-  
-  // });
-
- 
-
-
-  // // delete from local storage when delete button clicked
-  // $('.btn-delete').on('click', function(){
-  //   counter--
-  //   console.log(counter)
-  // });
-
-  
-
 });
+
+  //  $('.btn-delete').on('click',function(){
+  //   localStorage.removeItem($('.entry-name').val())
+
+  //   var firstName = $('.entry-name').val();
+  //   var firstGift = $('.entry-gift').val();
+
+  //   $('.'+firstName).remove();
+  //   $('.'+firstGift).remove();
+
+
+   
+  // });
+  // add more inputs when button is pressed
+  // $('.btn-add').on('click',function(){
+
+  //   var newGift = 'new-gift' + counter
+  //   var newPerson = 'new-person' + counter;
+  //   var btnSubmit = 'btn-submit' + counter;
+  //   var btnDelete = 'btn-delete' + counter;
+
+  //   counter++;
+    
+  //   $('.new_xmas_entry_list').append('<input class="'+ newPerson +'" type="text" placeholder="Name"><input class="' + newGift + '" type="text" placeholder="Gift"><button class="' + btnSubmit + '" type="button">submit</button><button class="' + btnDelete +'" type="button">delete</button>')
+
+  //     $('.' + btnSubmit).on('click',function(){
+  //       localStorage.setItem($('.'+ newPerson).val(),$('.'+ newGift).val())
+
+  //       liMaker($('.'+ newPerson).val(),$('.'+ newGift).val())
+
+  //     })
+
+      // $('ul').on('click',function(){
+      //   localStorage.removeItem($('.'+ newPerson).val())
+      //   $('.'+ newPerson).remove()
+      //   $('.'+ newGift).remove()
+      //   $('.'+ btnDelete).remove()
+
+      //   var name = $('.'+ newPerson).val()
+      //   var gift = $('.'+ newGift).val()
+
+      //   $('.'+name).remove()
+      //   $('.'+gift).remove()  
+
+        
+      // })
+  // });
+
+  // $('ul').on('click',function(){
+  
+  //   localStorage.removeItem($('.entry-name').val())
+
+  //   var firstName = $('.entry-name').val();
+  //   var firstGift = $('.entry-gift').val();
+
+  //   $('.'+firstName).remove();
+  //   $('.'+firstGift).remove();
+  // })
