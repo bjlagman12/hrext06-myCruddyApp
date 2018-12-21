@@ -22,9 +22,12 @@ $(document).ready(function(){
     var newPerson = 'new-person' + counter;
     var newGift = 'new-gift' + counter
     var btnDelete = 'btn-delete' + counter;
+    var chkBox = 'chk-box' +counter
+
+    // <input class="'+chkBox+'" type="checkbox">
     
      // this is list maker for later usage;
-      $('.list').append('<li class="'+newPerson+'">'+name +'</li><div class="'+newGift+'">' + gift + '</div><button class="'+btnDelete+'" type="button">delete</button>')
+      $('.list').append('<li class="'+newPerson+'">'+name +'<button class="'+btnDelete+'" type="button">completed</button></li><div class="'+newGift+'">' + gift + '</div>')
 
       // When you press delete it removes from the list and the local storage
       $('.'+btnDelete).on('click',function(){
@@ -36,6 +39,7 @@ $(document).ready(function(){
         $('.new-person'+ elementNum).remove()
         $('.new-gift'+ elementNum).remove()
         $('.btn-delete'+ elementNum).remove()
+        $('.chk-box'+ elementNum).remove()
 
       })
     }
@@ -45,13 +49,9 @@ $(document).ready(function(){
     localStorage.setItem(key,$('.entry-gift').val() )
 
     // makes a list the the input entries
-    // console.log(key)
-    // if(localStorage.hasOwnProperty(key)){
-    // }
     liMaker($('.entry-name').val(),$('.entry-gift').val())
-    // e.target.innerHTML
     
-
+    // e.target.innerHTML
     // clears the input form
     $('div').children('input').val('')
    
@@ -61,65 +61,18 @@ $(document).ready(function(){
   $('.btn-clear').on('click', function(){
     localStorage.clear()
     location.reload()
+
+  })
+
+  $('body').mouseover(function(){
    
+
+  })
+
+   
+   
+
   });
 
-});
-
-  //  $('.btn-delete').on('click',function(){
-  //   localStorage.removeItem($('.entry-name').val())
-
-  //   var firstName = $('.entry-name').val();
-  //   var firstGift = $('.entry-gift').val();
-
-  //   $('.'+firstName).remove();
-  //   $('.'+firstGift).remove();
 
 
-   
-  // });
-  // add more inputs when button is pressed
-  // $('.btn-add').on('click',function(){
-
-  //   var newGift = 'new-gift' + counter
-  //   var newPerson = 'new-person' + counter;
-  //   var btnSubmit = 'btn-submit' + counter;
-  //   var btnDelete = 'btn-delete' + counter;
-
-  //   counter++;
-    
-  //   $('.new_xmas_entry_list').append('<input class="'+ newPerson +'" type="text" placeholder="Name"><input class="' + newGift + '" type="text" placeholder="Gift"><button class="' + btnSubmit + '" type="button">submit</button><button class="' + btnDelete +'" type="button">delete</button>')
-
-  //     $('.' + btnSubmit).on('click',function(){
-  //       localStorage.setItem($('.'+ newPerson).val(),$('.'+ newGift).val())
-
-  //       liMaker($('.'+ newPerson).val(),$('.'+ newGift).val())
-
-  //     })
-
-      // $('ul').on('click',function(){
-      //   localStorage.removeItem($('.'+ newPerson).val())
-      //   $('.'+ newPerson).remove()
-      //   $('.'+ newGift).remove()
-      //   $('.'+ btnDelete).remove()
-
-      //   var name = $('.'+ newPerson).val()
-      //   var gift = $('.'+ newGift).val()
-
-      //   $('.'+name).remove()
-      //   $('.'+gift).remove()  
-
-        
-      // })
-  // });
-
-  // $('ul').on('click',function(){
-  
-  //   localStorage.removeItem($('.entry-name').val())
-
-  //   var firstName = $('.entry-name').val();
-  //   var firstGift = $('.entry-gift').val();
-
-  //   $('.'+firstName).remove();
-  //   $('.'+firstGift).remove();
-  // })

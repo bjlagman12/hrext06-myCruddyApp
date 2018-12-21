@@ -12,7 +12,6 @@ Create Read Update Delete using localStorage with JS, HTML and CSS
 - [x] Edit local storage
     - [x] What about if we have more than one value?
     - [x] how do we add multiple values?
-        - [ ] maybe use an array?
         - [x] maybe use multiple keys? create new keyname each time
 
 - [x] Delete local storage
@@ -21,16 +20,6 @@ Create Read Update Delete using localStorage with JS, HTML and CSS
 - [x] Display stored value in proper div
 
 ### Next Sprint (what are we trying to code)
--[ ] animate the new data some how
--[ ] utilize the d3 chart
--[ ] try to use stock api
--[ ] output the remaining money left
--[ ] output money for the next 10 years for savings and investing
-
-<!-- Examples: Replace with your own.
-- [ ] animate when new data is added
-- [ ] color code the data by timestape (older more greyed out)
-- [ ] Read from yelp api to get good bagel advice in a city
-- [ ] save my local storage to a remote storage for back up
-
-- [ ] Optional: Host on repl.it (html,css, js) -->
+- [x] animate the new data some how
+- [x] make snowflakes
+- [ ] utilize api
