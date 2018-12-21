@@ -16,7 +16,7 @@ Create Read Update Delete using localStorage with JS, HTML and CSS
 
 - [x] Delete local storage
     - [x] delete button storage.removeItem()
-    -  x] delete all storage.clear()
+    - [x] delete all storage.clear()
 - [x] Display stored value in proper div
 
 ### Next Sprint (what are we trying to code)
