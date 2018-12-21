@@ -31,7 +31,7 @@ $(document).ready(function(){
 
       // When you press delete it removes from the list and the local storage
       $('.'+btnDelete).on('click',function(){
-        var key = $('.'+ newPerson).text()
+        var key1 = $('.'+ newPerson).text()
         localStorage.removeItem(key)
 
         var elementNum = $(this).attr("class").slice(-1)
